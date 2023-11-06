@@ -1,5 +1,6 @@
 public class Words
 	{
+	//what.
 		private String word;
 		private int level;
 		private int points;
