@@ -168,7 +168,7 @@ public class Main
 			{
 				scoring();
 			}
-			else if(Letters.words.getWord().equals(guess))
+			else if(((Words) Letters.words).getName().equals(guess))
 			{
 				if(found.contains(guess))
 				{
@@ -178,7 +178,7 @@ public class Main
 				{
 					for(int i = 0; i < Letters.words.size(); i++)
 					{
-						if(Letters.words.get(i).getWord().equals(guess))
+						if(Letters.words.get(i).getName().equals(guess))
 						{
 							amount += Letters.words.get(i).getPoints();
 						}

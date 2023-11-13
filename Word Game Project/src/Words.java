@@ -1,27 +1,27 @@
 public class Words
 	{
 	//what.
-		private String word;
+		private String name;
 		private int level;
 		private int points;
 		private boolean panagram;
 		  
-		public Words(String w, int l, int po, boolean p)
+		public Words(String n, int l, int po, boolean p)
 		{
-			word = w;
+			name = ;
 			level = l;
 			points = po;
 			panagram = p;
 		}
 		
-		public String getWord()
+		public String getName()
 		{
-			return word;
+			return name;
 		}
 		
-		public void setWord(String word)
+		public void setWord(String name)
 		{
-			this.word = word;
+			this.name = name;
 		}
 		
 		public int getLevel()
