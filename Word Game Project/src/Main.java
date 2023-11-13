@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Main
 {
 	static Scanner userInput = new Scanner(System.in);
+	static Scanner userStringInput = new Scanner(System.in);
 	static int level;
 	static String name;
 	static int genius;
@@ -12,13 +13,19 @@ public class Main
 	static int good;
 	static int beginner = 0;
 	static int amount;
+	static boolean winning;
+	static String guess;
+	static int numbers;
+	static ArrayList found = new ArrayList();
+	
 	
 	public static void main(String[] args)
 	{
+		Letters.fillLetters();
 		intro();
 		board();
 		play();
-		scoring();
+		
 	}
 	
 	public static void intro()
@@ -77,7 +84,7 @@ public class Main
 			    System.out.println("     |  i  | |  l  |   ");
 			    System.out.println("     ------- -------	  ");
 			}
-		for(int i = 0; i <= 16; i++)
+		for(int i = 0; i <= 14; i++)
 			{
 				System.out.println("\n");
 			}
@@ -85,6 +92,13 @@ public class Main
 	
 	public static void found()
 	{
+		for(int i = 0; i <= Letters.words.size() - 1; i++)
+		{
+			if(Letters.words.get(i).getLevel() == level)
+			{
+				numbers++;
+			}
+		}
 		
 	}
 	
@@ -145,6 +159,44 @@ public class Main
 	
 	public static void play()
 	{
-		System.out.println("Ok " + name + ", to play, just keep typing in guesses! Try to get to genuis!!");
+		System.out.println("Ok " + name + ", to play, just keep typing in guesses! To see your progress, type 1. Try to get to genuis!!");
+		winning = false;
+		while(winning == false)
+		{
+			guess = userStringInput.nextLine();
+			if(guess.equals("1"))
+			{
+				scoring();
+			}
+			else if(Letters.words.getWord().equals(guess))
+			{
+				if(found.contains(guess))
+				{
+					System.out.println("You already found this, try again!");
+				}
+				else
+				{
+					for(int i = 0; i < Letters.words.size(); i++)
+					{
+						if(Letters.words.get(i).getWord().equals(guess))
+						{
+							amount += Letters.words.get(i).getPoints();
+						}
+					}
+			        found.add(guess); 
+			        System.out.println("You found a word!");
+				}
+			}
+			else
+			{
+				System.out.println("I'm sorry, that is not in the word database. Try again!");
+			}
+			if(amount == genius)
+			{
+				winning = true;
+				System.out.println("Congrats, you beat the game!!!");
+			}
+		}
+		
 	}
 }

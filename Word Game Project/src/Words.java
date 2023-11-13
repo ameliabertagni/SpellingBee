@@ -49,9 +49,9 @@ public class Words
 			return panagram;
 		}
 		
-		public void setPanagram(int panagram)
+		public void setPanagram(boolean panagram)
 		{
 			this.panagram = panagram;
 		}
 	}
-}
+
