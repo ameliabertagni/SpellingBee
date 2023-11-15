@@ -8,7 +8,7 @@ public class Words
 		  
 		public Words(String n, int l, int po, boolean p)
 		{
-			name = ;
+			name = n;
 			level = l;
 			points = po;
 			panagram = p;

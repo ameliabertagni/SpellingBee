@@ -17,12 +17,18 @@ public class Main
 	static String guess;
 	static int numbers;
 	static ArrayList found = new ArrayList();
-	
+	static int counter;
+	static boolean wordFound;
+	static boolean alreadyFound;
+	static boolean foundPanagram;
+	static boolean showedScore;
 	
 	public static void main(String[] args)
 	{
 		Letters.fillLetters();
 		intro();
+		scoring();
+		System.out.println("\n \n \n \n \n ");
 		board();
 		play();
 		
@@ -84,7 +90,7 @@ public class Main
 			    System.out.println("     |  i  | |  l  |   ");
 			    System.out.println("     ------- -------	  ");
 			}
-		for(int i = 0; i <= 14; i++)
+		for(int i = 0; i <= 13; i++)
 			{
 				System.out.println("\n");
 			}
@@ -104,8 +110,7 @@ public class Main
 	
 	public static void scoring()
 	{
-		genius = 0;
-		for(int i = 0; i <= Letters.words.size() - 1; i++)
+		for(int i = 0; i < Letters.words.size(); i++)
 		{
 			if(Letters.words.get(i).getLevel() == level)
 			{
@@ -161,41 +166,85 @@ public class Main
 	{
 		System.out.println("Ok " + name + ", to play, just keep typing in guesses! To see your progress, type 1. Try to get to genuis!!");
 		winning = false;
+		counter = 0;
 		while(winning == false)
 		{
+			if(counter >= 1)
+			{
+				for(int k = 0; k <= 15; k++)
+				{
+					System.out.println("\n");
+				}
+				if(amount >= genius)
+					{
+						winning = true;
+						System.out.println("Congrats, you beat the game!!!");
+					}
+				board();
+				if(alreadyFound == true)
+				{
+					System.out.println("You already found that word! Keep on guessing! You have " + amount + " points!");
+				}
+				else if(wordFound == true)
+				{
+					if(foundPanagram == true)
+					{
+						System.out.println("You found a panagram! Keep on guessing! You have " + amount + " points!");
+					}
+					else
+					{
+						System.out.println("You found a word! Keep on guessing! You have " + amount + " points!");
+					}
+				}
+				else if(showedScore == true)
+				{
+					scoring();
+					System.out.println("You've got this! Keep on guessing!");
+				}
+				else if(wordFound == false)
+				{
+					System.out.println("I'm sorry, that is not in the word database. Keep on guessing! You have " + amount + " points!");
+				}
+			}
+			wordFound = false;
+			alreadyFound = false;
+			foundPanagram = false;
+			showedScore = false;
 			guess = userStringInput.nextLine();
+			for(int i = 0; i < Letters.words.size(); i++)
+			{
+				if(Letters.words.get(i).getName().equals(guess))
+				{
+					if(found.contains(guess))
+						{
+							alreadyFound = true;
+						}
+					else
+					{
+						for(int j = 0; j < Letters.words.size(); j++)
+						{
+							if(Letters.words.get(j).getName().equals(guess))
+							{
+								amount += Letters.words.get(j).getPoints();
+								if(Letters.words.get(j).getPanagram() == true)
+								{
+									foundPanagram = true;
+								}
+							}
+						}
+						found.add(guess); 
+						counter++;
+						wordFound = true;
+					}
+				}
+			}
+			 System.out.println(genius);
 			if(guess.equals("1"))
 			{
-				scoring();
+				showedScore = true;
 			}
-			else if(((Words) Letters.words).getName().equals(guess))
-			{
-				if(found.contains(guess))
-				{
-					System.out.println("You already found this, try again!");
-				}
-				else
-				{
-					for(int i = 0; i < Letters.words.size(); i++)
-					{
-						if(Letters.words.get(i).getName().equals(guess))
-						{
-							amount += Letters.words.get(i).getPoints();
-						}
-					}
-			        found.add(guess); 
-			        System.out.println("You found a word!");
-				}
-			}
-			else
-			{
-				System.out.println("I'm sorry, that is not in the word database. Try again!");
-			}
-			if(amount == genius)
-			{
-				winning = true;
-				System.out.println("Congrats, you beat the game!!!");
-			}
+			
+			
 		}
 		
 	}

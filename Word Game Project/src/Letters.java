@@ -122,6 +122,7 @@ public class Letters
         words.add(new Words("Ping", 2, 1, false));
         words.add(new Words("Rind", 2, 1, false));
         words.add(new Words("Ring", 2, 1, false));
+        words.add(new Words("Grin", 2, 1, false));
         
         
         words.add(new Words("Lull", 1, 1, false));
@@ -131,7 +132,6 @@ public class Letters
         words.add(new Words("Ouch", 1, 1, false));
         words.add(new Words("Noun", 1, 1, false));
         words.add(new Words("Null", 1, 1, false));
-        words.add(new Words("Lulu", 1, 1, false));
         words.add(new Words("Ounce", 1, 5, false));
         words.add(new Words("Hunch", 1, 5, false));
         words.add(new Words("Lunch", 1, 5, false));
@@ -144,7 +144,7 @@ public class Letters
         words.add(new Words("Cellule", 1, 7, false));
         words.add(new Words("Nucleon", 1, 7, false));
         words.add(new Words("Unclench", 1, 8, false));
-        words.add(new Words("Luncheon", 1, 15, false));
+        words.add(new Words("Luncheon", 1, 15, true));
         }
    
     }
