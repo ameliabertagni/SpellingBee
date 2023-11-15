@@ -238,7 +238,6 @@ public class Main
 					}
 				}
 			}
-			 System.out.println(genius);
 			if(guess.equals("1"))
 			{
 				showedScore = true;
