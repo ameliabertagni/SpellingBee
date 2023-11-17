@@ -175,11 +175,6 @@ public class Main
 				{
 					System.out.println("\n");
 				}
-				if(amount >= genius)
-					{
-						winning = true;
-						System.out.println("Congrats, you beat the game!!!");
-					}
 				board();
 				if(alreadyFound == true)
 				{
@@ -243,7 +238,15 @@ public class Main
 				showedScore = true;
 			}
 			
-			
+			if(amount >= genius)
+			{
+				winning = true;
+				for(int i = 0; i <= 20; i++)
+					{
+						System.out.println("\n");
+					}
+				System.out.println("Congrats, you beat the game and reached genius with " + amount + " points!!!");
+			}
 		}
 		
 	}
